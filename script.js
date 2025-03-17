@@ -1,44 +1,31 @@
 const elements = {
-    countDownDisplay: document.getElementById("countDownDisplay"),
-    countDownBtn: document.getElementById('countDownBtn')
+    display: document.getElementById("countDisplay"),
+    countDownBtn: document.getElementById("countDownBtn")
 };
 
-let intervalId = null;
-let currentValue = 10;
+let count;
 
-function startCountDown() {
+function countDown() {
+    count = 10;
+    displayCount(count);
+  const intervalID =  setInterval(decrimentCount, 1000);
 
-    if (intervalId) {
-        clearInterval(intervalId);
+function decrimentCount() {
+    count--;
+    displayCount(count);
+    if (count <= 0) {
+        clearInterval(intervalID);
     }
+};
 
-    currentValue = 10;
+};
 
-    displayCount(currentValue);
-
-    intervalId = setInterval(function() {
-        currentValue--;
-
-        displayCount(currentValue);
-
-        if (currentValue <= 0) {
-            clearInterval(intervalId);
-            elements.countDownBtn.innerText = "Restart";
-        }
-    }, 1000);
-
-    if (currentValue) {
-        elements.countDownBtn.innerText = "Running...";
-    }
-
+function displayCount(count) {
+    elements.display.innerText = count;
 }
 
-function displayCount(value) {
-  return  elements.countDownDisplay.innerText = `${value}`;
+function intializeApp(){
+    elements.countDownBtn.addEventListener("click", countDown);
 }
 
-function initializeApp() {
-    elements.countDownBtn.addEventListener("click", startCountDown);
-}
-
-    document.addEventListener("DOMContentLoaded", initializeApp);
+intializeApp();
