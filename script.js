@@ -1,7 +1,8 @@
 const elements = {
     display: document.getElementById("countDisplay"),
     countDownBtn: document.getElementById("countDownBtn"),
-    pause: document.getElementById("btn-pause")
+    pause: document.getElementById("btn-pause"),
+    count: document.getElementById("countInput")
 };
 
 let count;
@@ -13,7 +14,8 @@ function countDown() {
         clearInterval(intervalID);
     }
 
-    count = 10;
+    let countValue = elements.count.value;
+    count = parseInt(countValue, 10);
     displayCount(count);
     elements.countDownBtn.innerText = "running";
     intervalID =  setInterval(decrimentCount, 1000);
