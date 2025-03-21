@@ -16,6 +16,12 @@ function countDown() {
 
     let countValue = elements.count.value;
     count = parseInt(countValue, 10);
+
+    if (isNaN(count) || count <= 0) {
+        count = 10;
+        elements.count.value = 10;
+    }
+
     displayCount(count);
     elements.countDownBtn.innerText = "running";
     intervalID =  setInterval(decrimentCount, 1000);
